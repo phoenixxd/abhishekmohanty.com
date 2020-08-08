@@ -1,9 +1,6 @@
 <!DOCTYPE html>
 <html>
-  <meta
-    http-equiv="content-type"
-    content="text/html;charset=utf-8"
-  />
+  <meta http-equiv="content-type" content="text/html;charset=utf-8" />
   <head>
     <title></title>
     <meta
@@ -22,6 +19,8 @@
       media="all"
       rel="stylesheet"
     />
+
+    <!-- <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" /> -->
 
     <!-- LOCAL -->
     <link rel="stylesheet" href="style/style.css" />
@@ -69,7 +68,7 @@
         </div>
       </div>
 
-      <section id="home" class="flex height-fix">
+      <section id="home" class="flex">
         <div id="pt" class="canvas"></div>
         <div class="flex row">
           <div class="flex">
@@ -119,14 +118,13 @@
 
       <!-- ABOUT -->
       <section id="about">
-        <div class="container flex">
+        <div class="container flex ">
           <div class="header waypoint" data-animation="slide-in-left">
             ABOUT
           </div>
           <div
             class="header-bar waypoint"
-            data-animation="slide-in-left"
-            data-delay=".5s"
+            data-animation="slide-in-right"
           ></div>
 
           <div class="flex row label-wrap">
@@ -194,7 +192,7 @@
                 <div class="waypoint" data-animation="fade-in" data-delay=".6s">
                   <div class="label bold">Dynamic</div>
                   <div>
-                    Content doesn't have to be static, I love making screens
+                    Content doesn't have to be static, I love making screens that
                     come to life.
                   </div>
                 </div>
@@ -577,7 +575,12 @@
             data-delay=".5s"
             id="contact-form"
           >
-            <input value="TO: connect@abhishekmohanty.com" type="text" name="to" disabled />
+            <input
+              value="TO: connect@abhishekmohanty.com"
+              type="text"
+              name="to"
+              disabled
+            />
             <input placeholder="Name" type="text" name="name" required />
             <input
               placeholder="Enter email"
@@ -636,6 +639,11 @@
         </div>
       </footer>
     </div>
+
+    <!-- <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+      AOS.init();
+    </script> -->
   </body>
 </html>
 

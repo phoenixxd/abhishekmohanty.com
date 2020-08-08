@@ -1,30 +1,13 @@
 $(function () {
-  var isMobile;
-  if (
-    /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
-      navigator.userAgent
-    )
-  ) {
+  var isMobile = false;
+  if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
     isMobile = true;
-
-    // Mobile height fix
-    $('.height-fix').each(function () {
-      var h = $(this).height();
-      $(this).height(h);
-    });
   }
 
   // RESIZE RESETS
   $(window).resize(function () {
     posFilterBar($('.filter').first());
   });
-
-  // Sticky Nav on Mobile
-  if (isMobile) {
-    $('nav').addClass('fixed');
-  } else {
-    $('nav').addClass('desk');
-  }
 
   // NAV POSITION
   var navPos = $('nav').position().top;
@@ -34,17 +17,14 @@ $(function () {
   $(window).on('scroll', function () {
     var pos = $(window).scrollTop();
     var pos2 = pos + 50;
-    var scrollBottom = pos + $(window).height();
 
-    if (!isMobile) {
-      if (pos >= navPos + $('nav').height() && lastPos < pos) {
-        $('nav').addClass('fixed');
-      }
-      if (pos < navPos && lastPos > pos) {
-        $('nav').removeClass('fixed');
-      }
-      lastPos = pos;
+
+    if (pos >= navPos + $('nav').height()) {
+      $('nav').addClass('fixed');
+    } else{
+      $('nav').removeClass('fixed');
     }
+    lastPos = pos;
 
     // Link Highlighting
     if (pos2 > $('#home').offset().top) {
@@ -67,14 +47,14 @@ $(function () {
     }
 
     // Prevent Hover on Scroll
-    clearTimeout(lockTimer);
-    if (!$('body').hasClass('disable-hover')) {
-      $('body').addClass('disable-hover');
-    }
+    // clearTimeout(lockTimer);
+    // if (!$('body').hasClass('disable-hover')) {
+    //   $('body').addClass('disable-hover');
+    // }
 
-    lockTimer = setTimeout(function () {
-      $('body').removeClass('disable-hover');
-    }, 500);
+    // lockTimer = setTimeout(function () {
+    //   $('body').removeClass('disable-hover');
+    // }, 500);
   });
 
   function highlightLink(anchor) {
@@ -95,8 +75,8 @@ $(function () {
       .addClass('active');
 
     window.scroll({
-      top: $('#' + anchor).offset().top, 
-      left: 0, 
+      top: $('#' + anchor).offset().top,
+      left: 0,
       behavior: 'smooth'
     });
   });
@@ -147,7 +127,7 @@ $(function () {
 
   // SCROLL ANIMATIONS
   function onScrollInit(items, elemTrigger) {
-    var offset = $(window).height() / 1.6;
+    var offset = '90%';
     items.each(function () {
       var elem = $(this),
         animationClass = elem.attr('data-animation'),
@@ -162,12 +142,15 @@ $(function () {
       var trigger = elemTrigger ? trigger : elem;
 
       trigger.waypoint(
-        function () {
-          elem.addClass('animated').addClass(animationClass);
+        function (direction) {
+          if(direction == 'down'){
+            elem.addClass('animated').addClass(animationClass);
+          }else{
+            elem.removeClass('animated').removeClass(animationClass);
+          }
           if (elem.get(0).id === 'gallery') mixClear(); //OPTIONAL
         },
         {
-          triggerOnce: true,
           offset: offset
         }
       );
@@ -224,15 +207,15 @@ TxtType.prototype.tick = function () {
     this.txt = fullTxt.substring(0, this.txt.length + 1);
   }
 
-  
+
   this.el.innerHTML = '<span class="wrap">' + this.txt + '</span>';
 
   var that = this;
   var delta = 20;
 
-  if (this.isDeleting) { 
-    delta = this.dperiod; 
-  } else{
+  if (this.isDeleting) {
+    delta = this.dperiod;
+  } else {
     delta = this.period;
   }
 
@@ -260,5 +243,5 @@ window.onload = function () {
       new TxtType(elements[i], JSON.parse(toRotate), period, dperiod, pause);
     }
   }
-  
+
 };
