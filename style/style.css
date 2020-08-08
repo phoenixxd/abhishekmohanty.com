@@ -35,6 +35,11 @@
     opacity: 1;
   }
 }
+@keyframes fadeOut {
+  100% {
+    opacity: 0;
+  }
+}
 @keyframes flipInX {
   from {
     -webkit-animation-timing-function: ease-in;

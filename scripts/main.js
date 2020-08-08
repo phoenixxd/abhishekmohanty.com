@@ -136,7 +136,7 @@ $(function () {
       elem.css({
         '-webkit-animation-delay': animationDelay,
         '-moz-animation-delay': animationDelay,
-        'animation-delay': animationDelay
+        'animation-delay': animationDelay,
       });
 
       var trigger = elemTrigger ? trigger : elem;
